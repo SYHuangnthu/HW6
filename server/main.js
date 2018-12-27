@@ -53,7 +53,7 @@ Meteor.methods({
 			throw new Meteor.Error();
 		}
 		else {
-			let userLog = conversationLogDB.find({user: username}).fetch();
+			let userLog = conversationLogDB.find({}).fetch();
 			if(userLog.length > 0) {
 				return;
 			}
