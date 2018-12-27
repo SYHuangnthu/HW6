@@ -49,8 +49,8 @@ var weatherInfo = function(msg) {
 Meteor.methods({
 	setUser: function(username) {
 		if(username.includes(" ")) {
-			throw new Meteor.Error();
 			console.log(username);
+			throw new Meteor.Error();
 		}
 		else {
 			let userLog = conversationLogDB.find({user: username}).fetch();
@@ -89,8 +89,7 @@ Meteor.methods({
 			return "full";
 		}
 	},
-	resetMsg: function(username) {
-		conversationLogDB.remove({user: username});
-		initConversation(username);
+	resetMsg: function() {
+		conversationLogDB.remove({});
 	}
 });

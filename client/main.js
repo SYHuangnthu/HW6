@@ -27,12 +27,7 @@ var userConversationLogDB = new Mongo.Collection("conversationLog");
 var conversationLog = new ReactiveVar("This is your record.");
 
 Session.setDefault("currentPage","frontPage");
-Session.setDefault("userSession", "");
 
-
-Tracker.autorun(function() {
-	Meteor.subscribe("userConversation", Session.get("userSession"));
-});
 
 Template.body.helpers({
   checkCurrentPage: function(page) {
@@ -42,7 +37,6 @@ Template.body.helpers({
 
 Template.mainSection.events({
   "click #back": function() {
-    Session.set("userSession", "");
     Session.set("currentPage", "frontPage");
   },
   "click #submitCity": function(event){
@@ -58,7 +52,7 @@ Template.mainSection.events({
   	event.preventDefault();
     let myMsgObj = document.getElementById("username");
     let username2 = myMsgObj.value;
-    Meteor.call("msgReceiver", username2, Session.get("userSession"), function(error, result) {
+    Meteor.call("msgReceiver", username2, function(error, result) {
       if(error) {
       }
       else if(result === "full") {
@@ -71,7 +65,7 @@ Template.mainSection.events({
     myMsgObj.value = "";
   },
   "click #resetCity": function(){
-    Meteor.call("resetMsg", Session.get("userSession"));
+    Meteor.call("resetMsg");
   }
 });
 Template.frontPage.events({
