@@ -33,8 +33,3 @@ a:hover {
 	font-weight: bold;
 	cursor: pointer;
 }
-
-#conversationBox {
-	height: 50vh;
-	width: 70vw;
-}
