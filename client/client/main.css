@@ -1,0 +1,40 @@
+* {
+
+}
+
+body {
+	font-family: "ZCOOL XiaoWei";
+	text-align: center;
+	color: black;
+	background-color: #ffe6cc;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	color: grey;
+}
+
+.buttons {
+	background-color: white;
+	color: black;
+	font-family: "ZCOOL XiaoWei";
+	font-size: 3vw;
+	padding: 0.2vw;
+	border-radius: 0.2vw;
+}
+
+.buttons:hover {
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#conversationBox {
+	height: 80vh;
+	width: 70vw;
+}

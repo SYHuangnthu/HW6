@@ -1,0 +1,63 @@
+<!-- The third debugging task of Assignment I
+
+   Basic Linguistic Web Application Development
+   Fall 2018, Dept. Foreign Languages and Literature
+
+   National Tsing Hua University, Taiwan -->
+
+<!-- 
+作業主題
+利用openweather天氣網站提供的API，設計一個可以查詢天氣的Meteor App。
+
+作業要求
+1. 至少要有查詢當下的氣溫、風速與高低溫，以及隔天的預報氣溫與高低溫的功能。
+
+2. 程式介面不使用ELIZA的介面，自行設計，天氣查詢結果的呈現方式也可以自由呈現(如：圖片)。
+
+3. 可自行增加功能或是使用openweather天氣網站免費API提供的其他資訊(如：氣壓、濕度、天氣地圖、UV指數)
+
+作業評分
+50% = 達成基本要求(例：輸入城市的名稱得到目前或隔天的天氣預報)
+10% = 程式排版與變數命名等程式基本開發邏輯
+25% = 有使用到Session或是Reactive Variable的功能呈現網頁內容(例：利用Session Variable在查詢和結果頁面切換)
+15% = 有使用到MongoDB儲存或查詢資料(例：歷史天氣查詢紀錄)
+
+繳交說明
+1. 上傳作業時請將你的Meteor App中的client與server資料夾壓縮為單一壓縮檔。
+
+2. 另外請上傳一個說明文件，詳細解釋你的天氣查詢的App的主要功能。
+
+3. 所有openweathermap可免費使用的API請參考https://openweathermap.org/api            -->
+
+<head>
+  <title>Ask Me Weather!!!</title>
+  <meta name="viewport" content="width=devicewidth, initial-scale=1.0"> 
+  <link href="https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei" rel="stylesheet"> 
+</head>
+<body>
+  {{#if checkCurrentPage "frontPage"}}
+    {{> frontPage}}
+  {{else}}
+    {{> mainSection}}
+  {{/if}}
+</body>
+
+<template name = "frontPage">
+  <h1>Ask me how the weather is!</h1>
+  <p>
+    <input type="button" class="buttons" id="enterMain" value= "Search it!" />
+  </p>
+</template>
+
+<template name = "mainSection">
+  <h3>
+    City:<input type = "text" id = "username" size="20" />(No space)<br/>
+    <input type= "button" class="buttons" id = "submitCity" value= "submit"  >  
+  </h3>
+  <p>
+    <textarea id ="response" readonly></textarea><br/>
+    <input type="button" class = "buttons" id ="back" value = "Back"/><br/>
+    <input type="button" class = "buttons" id = "resetCity" value ="Reset" /><br/>
+    <a href = "https://openweathermap.org/" target = "_blank">I want to know more!!</a>
+  </p>
+</template>
