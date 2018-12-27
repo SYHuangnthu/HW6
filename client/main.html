@@ -45,14 +45,17 @@
 <template name = "frontPage">
   <h1>Ask me how the weather is!</h1>
   <p>
-    City:<input type = "text" id = "cityname" size="20" />(No space)<br/>
-    <input type="button" class="buttons" id="gogo" value= "Search it!" />
+    <input type="button" class="buttons" id="enterMain" value= "Search it!" />
   </p>
 </template>
 
 <template name = "mainSection">
-  <h3>    <textarea id ="response" readonly></textarea></h3>
+  <h3>
+    City:<input type = "text" id = "username" size="20" />(No space)<br/>
+    <input type= "button" class="buttons" id = "submitCity" value= "submit"  >  
+  </h3>
   <p>
+    <textarea id ="response" readonly>{{getConversation}}</textarea><br/>
     <input type="button" class = "buttons" id ="back" value = "Back"/><br/>
     <input type="button" class = "buttons" id = "resetCity" value ="Reset" /><br/>
     <a href = "https://openweathermap.org/" target = "_blank">I want to know more!!</a>

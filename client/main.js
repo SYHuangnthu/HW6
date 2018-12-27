@@ -27,36 +27,68 @@ var userConversationLogDB = new Mongo.Collection("conversationLog");
 var conversationLog = new ReactiveVar("This is your record.");
 
 Session.setDefault("currentPage","frontPage");
-Session.setDefault("citySession","");
+Session.setDefault("userSession", "");
+
 
 Tracker.autorun(function() {
-	Meteor.subscribe("userConversation", Session.get("citySession"));
+	Meteor.subscribe("userConversation", Session.get("userSession"));
 });
 
 Template.body.helpers({
-	checkCurrentPage: function(page) {
-		return Session.euals("currentPage",page);
-	}
+  checkCurrentPage: function(page) {
+    return Session.equals("currentPage", page);
+  }
 });
 
-Template.mainSection.evnets({
+Template.mainSection.events({
   "click #back": function() {
-    Session.set("citySession", "");
+    Session.set("userSession", "");
     Session.set("currentPage", "frontPage");
+  },
+  "click #submitCity": function(event){
+    let username1 = document.getElementById("username").value;
+    Meteor.call("setUser", username1, /*function(error, result) {
+     if(error) {
+        alert("Cityname cannot have any space!");
+      }
+      else {
+       console.log(username1);
+      }
+    }*/);
+  	event.preventDefault();
+    let myMsgObj = document.getElementById("username");
+    let username2 = myMsgObj.value;
+    Meteor.call("msgReceiver", username2, Session.get("userSession"), function(error, result) {
+      if(error) {
+      }
+      else if(result === "full") {
+        alert("The database is full!");
+      }
+      else {
+
+      }
+    });
+    myMsgObj.value = "";
+  },
+  "click #resetCity": function(){
+    Meteor.call("resetMsg", Session.get("userSession"));
   }
 });
 Template.frontPage.events({
-	"click #gogo": function() {
-		let cityname = document.getElementById("cityname").value;
-		Meteor.call("setCity", cityname, function(error,result){
-			if(error) {
-				alert("City cannot have any space!");
-			}
-			else {
-				Session.set("citySession",cityname);
-				Session.set("currentPage", "home");
-
-			}
-		});
-	}
+  "click #enterMain": function() {
+  	Session.set("currentPage", "home");
+  }
+});
+Template.mainSection.helpers({
+  getConversation: function() {
+    let dbData = conversationLogDB.find({}, {sort: {time: 1}});
+    dbData = dbData.fetch();
+    let conversationLog = "";
+    for(let index=0 ; index<dbData.length ; index++) {
+      let msgData = dbData[index];
+      conversationLog = conversationLog+msgData.source+": ";
+      conversationLog = conversationLog+msgData.msg+"\n";
+    }
+    return conversationLog;
+  }
 });
