@@ -50,6 +50,7 @@ Meteor.methods({
 	setUser: function(username) {
 		if(username.includes(" ")) {
 			throw new Meteor.Error();
+			console.log(username);
 		}
 		else {
 			let userLog = conversationLogDB.find({user: username}).fetch();
@@ -57,7 +58,6 @@ Meteor.methods({
 				return;
 			}
 			else {
-				initConversation(username);
 				return;
 			}
 		}

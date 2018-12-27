@@ -47,14 +47,14 @@ Template.mainSection.events({
   },
   "click #submitCity": function(event){
     let username1 = document.getElementById("username").value;
-    Meteor.call("setUser", username1, /*function(error, result) {
+    Meteor.call("setUser", username1, function(error, result) {
      if(error) {
         alert("Cityname cannot have any space!");
       }
       else {
        console.log(username1);
       }
-    }*/);
+    });
   	event.preventDefault();
     let myMsgObj = document.getElementById("username");
     let username2 = myMsgObj.value;
