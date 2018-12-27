@@ -36,7 +36,7 @@ var weatherInfo = function(msg) {
 				cityName+", and the temperature is "+wtMain.temp+"C."+
 				" The wind speed is "+wtWind.speed+" km/hr."+
 				" The highest temperature is "+wtMain.temp_max+", "+
-				"and the lowest temperature is "+wtMain.temp_min+"C."+"\n The nextday temperature will be "+wtMain2.temp+" and the wind ""speed will be "+wtWind2.speed+" kn/hr.";
+				"and the lowest temperature is "+wtMain.temp_min+"C."+"\n The nextday temperature will be "+wtMain2.temp+" and the wind speed will be "+wtWind2.speed+" km/hr.";
 			console.log(wtResponse);
 			return wtResponse;
 		}

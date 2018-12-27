@@ -23,7 +23,7 @@
 
 3. 所有openweathermap可免費使用的API請參考https://openweathermap.org/api 
 */
-var ConversationLogDB = new Mongo.Collection("conversationLog");
+var conversationLogDB = new Mongo.Collection("conversationLog");
 var conversationLog = new ReactiveVar("This is your record.");
 
 Session.setDefault("currentPage","frontPage");
@@ -81,7 +81,6 @@ Template.mainSection.helpers({
     let conversationLog = "";
     for(let index=0 ; index<dbData.length ; index++) {
       let msgData = dbData[index];
-      conversationLog = conversationLog+msgData.source+": ";
       conversationLog = conversationLog+msgData.msg+"\n";
     }
     console.log(conversationLog);
