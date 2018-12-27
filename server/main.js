@@ -62,12 +62,11 @@ Meteor.methods({
 			}
 		}
 	},
-	msgReceiver: function(msg, username) {
-		let dataNum = conversationLogDB.find({user: username}).fetch().length;
+	msgReceiver: function(msg) {
+		let dataNum = conversationLogDB.find({}).fetch().length;
 		if(dataNum <= 20) {
 			conversationLogDB.insert(
 				{
-					user: username,
 					source: "You",
 					msg: msg,
 					time: new Date()
@@ -77,7 +76,6 @@ Meteor.methods({
 			
 			conversationLogDB.insert(
 				{
-					user: username,
 					source: "ELIZA",
 					msg: ELIZAResponse,
 					time: new Date()

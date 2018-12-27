@@ -77,12 +77,14 @@ Template.mainSection.helpers({
   getConversation: function() {
     let dbData = conversationLogDB.find({}, {sort: {time: 1}});
     dbData = dbData.fetch();
+    console.log(dbData);
     let conversationLog = "";
     for(let index=0 ; index<dbData.length ; index++) {
       let msgData = dbData[index];
       conversationLog = conversationLog+msgData.source+": ";
       conversationLog = conversationLog+msgData.msg+"\n";
     }
+    console.log(conversationLog);
     return conversationLog;
   }
 });
