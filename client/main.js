@@ -40,19 +40,17 @@ Template.mainSection.events({
     Session.set("currentPage", "frontPage");
   },
   "click #submitCity": function(event){
-    let username1 = document.getElementById("username").value;
-    Meteor.call("setUser", username1, function(error, result) {
+    let cityname1 = document.getElementById("cityname").value;
+    Meteor.call("setCity", cityname1, function(error, result) {
      if(error) {
         alert("Cityname cannot have any space!");
       }
       else {
-       console.log(username1);
+       console.log(cityname1);
       }
     });
   	event.preventDefault();
-    let myMsgObj = document.getElementById("username");
-    let username2 = myMsgObj.value;
-    Meteor.call("msgReceiver", username2, function(error, result) {
+    Meteor.call("msgReceiver", cityname1, function(error, result) {
       if(error) {
       }
       else if(result === "full") {
@@ -62,7 +60,7 @@ Template.mainSection.events({
 
       }
     });
-    myMsgObj.value = "";
+    cityname1 = "";
   },
   "click #resetCity": function(){
     Meteor.call("resetMsg");

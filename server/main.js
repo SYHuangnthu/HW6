@@ -49,9 +49,9 @@ var weatherInfo = function(msg) {
 };
 
 Meteor.methods({
-	setUser: function(username) {
-		if(username.includes(" ")) {
-			console.log(username);
+	setCity: function(cityname) {
+		if(cityname.includes(" ")) {
+			console.log(cityname);
 			throw new Meteor.Error();
 		}
 		else {
